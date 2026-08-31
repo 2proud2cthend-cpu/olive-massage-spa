@@ -569,8 +569,15 @@ while the deposit/full-payment choice from
 the original form is no longer used here.
 */
 
-amount.textContent =
-"$" + price.toFixed(2);
+const paymentOption = document.querySelector(
+  'input[name="payment_option"]:checked'
+);
+
+const dueNow = paymentOption && paymentOption.value === "deposit"
+  ? price / 2
+  : price;
+
+amount.textContent = "$" + dueNow.toFixed(2);
 
 }
 
@@ -628,9 +635,8 @@ document.querySelector(
 'input[name="massage"]:checked'
 );
 
-const payment =
-document.querySelector(
-'input[name="payment"]:checked'
+const payment = document.querySelector(
+'input[name="payment_option"]:checked'
 ).value;
 
 
@@ -705,7 +711,7 @@ payment_option:
 payment,
 
 amount_due:
-price,
+payment === "deposit" ? price / 2 : price,
 
 preferred_date:
 preferredDate,
