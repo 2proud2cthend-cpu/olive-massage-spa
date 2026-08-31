@@ -1,346 +1,333 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Massage Spa — Book Your Appointment</title>
+  <title>Olive Massage & Spa — Book Your Appointment</title>
 
-<style>
-  :root{
-    --ink:#2e2925;
-    --muted:#756b64;
-    --cream:#f8f4ee;
-    --card:#fffdf9;
-    --accent:#9b7358;
-    --accent-dark:#79563f;
-    --line:#e7ddd2;
-    --soft:#eee4da;
-    --success:#55735c;
-    --error:#9b4b4b;
-  }
-
-  *{box-sizing:border-box}
-
-  body{
-    margin:0;
-    font-family:Inter,ui-sans-serif,system-ui,-apple-system,
-      BlinkMacSystemFont,"Segoe UI",sans-serif;
-    color:var(--ink);
-    background:linear-gradient(
-      180deg,
-      #f5eee6 0,
-      #fbf9f5 55%,
-      #f3ece4 100%
-    );
-  }
-
-  .wrap{
-    max-width:1050px;
-    margin:auto;
-    padding:28px 18px 60px;
-  }
-
-  header{
-    text-align:center;
-    padding:48px 15px 35px;
-  }
-
-  .eyebrow{
-    text-transform:uppercase;
-    letter-spacing:.22em;
-    font-size:12px;
-    color:var(--accent-dark);
-    font-weight:700;
-  }
-
-  h1{
-    font-family:Georgia,serif;
-    font-size:clamp(40px,7vw,68px);
-    font-weight:500;
-    margin:10px 0 8px;
-  }
-
-  .tagline{
-    font-size:17px;
-    color:var(--muted);
-    letter-spacing:.06em;
-  }
-
-  .progress{
-    display:flex;
-    gap:8px;
-    margin:0 auto 22px;
-    max-width:820px;
-  }
-
-  .progress span{
-    height:4px;
-    border-radius:9px;
-    background:var(--soft);
-    flex:1;
-  }
-
-  .progress span.active{
-    background:var(--accent);
-  }
-
-  .card{
-    background:rgba(255,253,249,.92);
-    border:1px solid var(--line);
-    border-radius:24px;
-    padding:28px;
-    margin:16px auto;
-    max-width:820px;
-    box-shadow:0 12px 35px rgba(70,45,30,.06);
-  }
-
-  .section-title{
-    display:flex;
-    align-items:center;
-    gap:12px;
-    margin:0 0 20px;
-    font-family:Georgia,serif;
-    font-size:27px;
-  }
-
-  .num{
-    width:32px;
-    height:32px;
-    border-radius:50%;
-    display:grid;
-    place-items:center;
-    background:var(--ink);
-    color:#fff;
-    font:600 14px system-ui;
-  }
-
-  .services{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:12px;
-  }
-
-  .service{
-    position:relative;
-    border:1px solid var(--line);
-    border-radius:18px;
-    padding:20px;
-    cursor:pointer;
-    background:#fff;
-    transition:.2s;
-  }
-
-  .service:hover{
-    transform:translateY(-2px);
-    border-color:#cbb6a5;
-  }
-
-  .service.selected{
-    border:2px solid var(--accent);
-    background:#fbf5ef;
-  }
-
-  .service input{
-    position:absolute;
-    opacity:0;
-  }
-
-  .duration{
-    font-weight:650;
-    font-size:16px;
-  }
-
-  .price{
-    font-family:Georgia,serif;
-    font-size:31px;
-    margin-top:10px;
-  }
-
-  .field{
-    margin-bottom:17px;
-  }
-
-  .field label{
-    display:block;
-    font-size:13px;
-    font-weight:700;
-    margin-bottom:7px;
-  }
-
-  input[type=text],
-  input[type=tel],
-  input[type=email],
-  input[type=date],
-  input[type=time],
-  textarea{
-    width:100%;
-    padding:13px 14px;
-    border:1px solid var(--line);
-    border-radius:12px;
-    background:#fff;
-    color:var(--ink);
-    font:inherit;
-    outline:none;
-  }
-
-  input:focus,
-  textarea:focus{
-    border-color:var(--accent);
-    box-shadow:0 0 0 3px rgba(155,115,88,.1);
-  }
-
-  textarea{
-    min-height:95px;
-    resize:vertical;
-  }
-
-  .grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:16px;
-  }
-
-  .payment{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:12px;
-  }
-
-  .pay{
-    border:1px solid var(--line);
-    border-radius:16px;
-    padding:17px;
-    cursor:pointer;
-    background:#fff;
-  }
-
-  .pay.selected{
-    border:2px solid var(--accent);
-    background:#fbf5ef;
-  }
-
-  .pay input{
-    margin-right:8px;
-  }
-
-  .pay strong{
-    display:block;
-    font-size:15px;
-  }
-
-  .pay small{
-    color:var(--muted);
-  }
-
-  .total{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    border-top:1px solid var(--line);
-    margin-top:20px;
-    padding-top:20px;
-    font-weight:700;
-  }
-
-  #amount{
-    font-family:Georgia,serif;
-    font-size:30px;
-    color:var(--accent-dark);
-  }
-
-  .notice{
-    background:#f3eee8;
-    border-radius:15px;
-    padding:16px;
-    margin-top:18px;
-    color:#62584f;
-    font-size:13px;
-    line-height:1.55;
-  }
-
-  .check{
-    display:flex;
-    gap:10px;
-    align-items:flex-start;
-    font-size:13px;
-    color:var(--muted);
-    line-height:1.45;
-    margin-top:16px;
-  }
-
-  .check input{
-    margin-top:3px;
-    accent-color:var(--accent);
-  }
-
-  button{
-    width:100%;
-    border:0;
-    border-radius:14px;
-    padding:15px 18px;
-    background:var(--ink);
-    color:#fff;
-    font-size:15px;
-    font-weight:750;
-    cursor:pointer;
-    margin-top:18px;
-  }
-
-  button:hover{
-    background:#1e1a17;
-  }
-
-  button:disabled{
-    opacity:.6;
-    cursor:not-allowed;
-  }
-
-  .confirmation{
-    display:none;
-    background:#edf4ee;
-    border:1px solid #cbdacb;
-    color:#3d5b43;
-    border-radius:16px;
-    padding:17px;
-    margin-top:18px;
-    line-height:1.55;
-  }
-
-  .error{
-    display:none;
-    background:#f9eeee;
-    border:1px solid #e4c7c7;
-    color:var(--error);
-    border-radius:16px;
-    padding:17px;
-    margin-top:18px;
-    line-height:1.55;
-  }
-
-  footer{
-    text-align:center;
-    color:var(--muted);
-    font-size:12px;
-    padding:18px;
-  }
-
-  @media(max-width:700px){
-    .services,
-    .payment,
-    .grid{
-      grid-template-columns:1fr;
+  <style>
+    :root{
+      --ink:#2e2925;
+      --muted:#756b64;
+      --cream:#f8f4ee;
+      --card:#fffdf9;
+      --accent:#9b7358;
+      --accent-dark:#79563f;
+      --line:#e7ddd2;
+      --soft:#eee4da;
+      --success:#55735c;
+      --error:#9b4b4b;
     }
 
-    .card{
-      padding:22px;
+    *{box-sizing:border-box}
+
+    body{
+      margin:0;
+      font-family:Inter,Arial,sans-serif;
+      color:var(--ink);
+      background:linear-gradient(
+        180deg,
+        #f5eee6 0,
+        #fbf9f5 55%,
+        #f3ece4 100%
+      );
+    }
+
+    .wrap{
+      max-width:1050px;
+      margin:auto;
+      padding:20px 18px 60px;
     }
 
     header{
-      padding-top:28px;
+      text-align:center;
+      padding:45px 15px 30px;
     }
-  }
-</style>
+
+    .eyebrow{
+      text-transform:uppercase;
+      letter-spacing:.2em;
+      font-size:12px;
+      color:var(--accent-dark);
+      font-weight:700;
+    }
+
+    h1{
+      font-family:Georgia,serif;
+      font-size:clamp(40px,7vw,68px);
+      font-weight:500;
+      margin:10px 0;
+    }
+
+    .tagline{
+      color:var(--muted);
+      font-size:17px;
+    }
+
+    .progress{
+      display:flex;
+      gap:8px;
+      max-width:820px;
+      margin:0 auto 22px;
+    }
+
+    .progress span{
+      height:4px;
+      flex:1;
+      background:var(--soft);
+      border-radius:10px;
+    }
+
+    .progress span.active{
+      background:var(--accent);
+    }
+
+    .card{
+      background:rgba(255,253,249,.94);
+      border:1px solid var(--line);
+      border-radius:24px;
+      padding:28px;
+      margin:16px auto;
+      max-width:820px;
+      box-shadow:0 12px 35px rgba(70,45,30,.06);
+    }
+
+    .section-title{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      margin:0 0 20px;
+      font-family:Georgia,serif;
+      font-size:27px;
+    }
+
+    .num{
+      width:32px;
+      height:32px;
+      border-radius:50%;
+      display:grid;
+      place-items:center;
+      background:var(--ink);
+      color:white;
+      font:600 14px Arial,sans-serif;
+    }
+
+    .services{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:12px;
+    }
+
+    .service{
+      position:relative;
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:20px;
+      cursor:pointer;
+      background:white;
+      transition:.2s;
+    }
+
+    .service:hover{
+      transform:translateY(-2px);
+    }
+
+    .service.selected{
+      border:2px solid var(--accent);
+      background:#fbf5ef;
+    }
+
+    .service input{
+      position:absolute;
+      opacity:0;
+    }
+
+    .duration{
+      font-weight:700;
+      font-size:16px;
+    }
+
+    .price{
+      font-family:Georgia,serif;
+      font-size:31px;
+      margin-top:10px;
+      color:var(--accent-dark);
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:16px;
+    }
+
+    .field{
+      margin-bottom:17px;
+    }
+
+    label.field-label{
+      display:block;
+      font-size:13px;
+      font-weight:700;
+      margin-bottom:7px;
+    }
+
+    input[type=text],
+    input[type=tel],
+    input[type=email],
+    input[type=date],
+    input[type=time],
+    select,
+    textarea{
+      width:100%;
+      padding:13px 14px;
+      border:1px solid var(--line);
+      border-radius:12px;
+      background:white;
+      color:var(--ink);
+      font:inherit;
+      outline:none;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus{
+      border-color:var(--accent);
+      box-shadow:0 0 0 3px rgba(155,115,88,.1);
+    }
+
+    textarea{
+      min-height:100px;
+      resize:vertical;
+    }
+
+    .notice{
+      background:#f3eee8;
+      border-radius:15px;
+      padding:16px;
+      margin-top:18px;
+      color:#62584f;
+      font-size:13px;
+      line-height:1.55;
+    }
+
+    .check{
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+      font-size:13px;
+      color:var(--muted);
+      line-height:1.45;
+      margin-top:16px;
+    }
+
+    .check input{
+      margin-top:3px;
+      accent-color:var(--accent);
+    }
+
+    .payment{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:12px;
+    }
+
+    .pay{
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:17px;
+      cursor:pointer;
+      background:white;
+    }
+
+    .pay.selected{
+      border:2px solid var(--accent);
+      background:#fbf5ef;
+    }
+
+    .pay strong{
+      display:block;
+      font-size:15px;
+    }
+
+    .pay small{
+      color:var(--muted);
+    }
+
+    .total{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      border-top:1px solid var(--line);
+      margin-top:20px;
+      padding-top:20px;
+      font-weight:700;
+    }
+
+    #amount{
+      font-family:Georgia,serif;
+      font-size:30px;
+      color:var(--accent-dark);
+    }
+
+    button{
+      width:100%;
+      border:0;
+      border-radius:14px;
+      padding:15px 18px;
+      background:var(--ink);
+      color:white;
+      font-size:15px;
+      font-weight:750;
+      cursor:pointer;
+      margin-top:18px;
+    }
+
+    button:disabled{
+      opacity:.6;
+      cursor:not-allowed;
+    }
+
+    .confirmation,
+    .error{
+      display:none;
+      border-radius:16px;
+      padding:17px;
+      margin-top:18px;
+      line-height:1.55;
+    }
+
+    .confirmation{
+      background:#edf4ee;
+      border:1px solid #cbdacb;
+      color:#3d5b43;
+    }
+
+    .error{
+      background:#f9eeee;
+      border:1px solid #e4c7c7;
+      color:var(--error);
+    }
+
+    footer{
+      text-align:center;
+      color:var(--muted);
+      font-size:12px;
+      padding:25px 10px;
+    }
+
+    @media(max-width:700px){
+      .services,
+      .payment,
+      .grid{
+        grid-template-columns:1fr;
+      }
+
+      .card{
+        padding:22px;
+      }
+    }
+  </style>
 </head>
 
 <body>
@@ -349,9 +336,9 @@
 
   <header>
     <div class="eyebrow">Wellness • Body • Mind</div>
-    <h1>Massage Spa</h1>
+    <h1>Olive Massage & Spa</h1>
     <div class="tagline">
-      Full Satisfaction • Relax • Refresh • Reconnect
+      Relax • Refresh • Reconnect
     </div>
   </header>
 
@@ -359,13 +346,14 @@
     <span class="active"></span>
     <span class="active"></span>
     <span class="active"></span>
-    <span></span>
+    <span class="active"></span>
   </div>
 
   <form id="bookingForm">
 
-    <!-- STEP 1 -->
+    <!-- 1. MASSAGE -->
     <section class="card">
+
       <h2 class="section-title">
         <span class="num">1</span>
         Choose Your Massage
@@ -374,41 +362,36 @@
       <div class="services">
 
         <label class="service" data-price="150">
-          <input
-            type="radio"
-            name="massage"
-            value="30 Minutes"
-            required
-          >
+          <input type="radio"
+                 name="massage"
+                 value="30 Minutes"
+                 required>
           <div class="duration">30 Minutes</div>
           <div class="price">$150</div>
         </label>
 
         <label class="service" data-price="200">
-          <input
-            type="radio"
-            name="massage"
-            value="1 Hour"
-          >
+          <input type="radio"
+                 name="massage"
+                 value="1 Hour">
           <div class="duration">1 Hour</div>
           <div class="price">$200</div>
         </label>
 
         <label class="service" data-price="300">
-          <input
-            type="radio"
-            name="massage"
-            value="2 Hours"
-          >
+          <input type="radio"
+                 name="massage"
+                 value="2 Hours">
           <div class="duration">2 Hours</div>
           <div class="price">$300</div>
         </label>
 
       </div>
+
     </section>
 
 
-    <!-- STEP 2 -->
+    <!-- 2. APPOINTMENT -->
     <section class="card">
 
       <h2 class="section-title">
@@ -419,20 +402,26 @@
       <div class="grid">
 
         <div class="field">
-          <label for="date">Preferred Date</label>
+          <label class="field-label" for="date">
+            Preferred Date
+          </label>
+
           <input
             id="date"
-            name="date"
+            name="preferred_date"
             type="date"
             required
           >
         </div>
 
         <div class="field">
-          <label for="time">Preferred Time</label>
+          <label class="field-label" for="time">
+            Preferred Time
+          </label>
+
           <input
             id="time"
-            name="time"
+            name="preferred_time"
             type="time"
             required
           >
@@ -441,14 +430,14 @@
       </div>
 
       <div class="notice">
-        Your requested time is subject to availability.
-        The appointment is confirmed after payment is verified.
+        Your requested appointment time is subject to availability.
+        The spa will contact you to confirm your appointment.
       </div>
 
     </section>
 
 
-    <!-- STEP 3 -->
+    <!-- 3. CLIENT -->
     <section class="card">
 
       <h2 class="section-title">
@@ -459,46 +448,77 @@
       <div class="grid">
 
         <div class="field">
-          <label for="name">Full Name</label>
+          <label class="field-label" for="name">
+            Full Name
+          </label>
+
           <input
             id="name"
-            name="name"
+            name="full_name"
             type="text"
             autocomplete="name"
+            placeholder="Your full name"
             required
           >
         </div>
 
         <div class="field">
-          <label for="phone">Phone Number</label>
+          <label class="field-label" for="phone">
+            Phone Number
+          </label>
+
           <input
             id="phone"
             name="phone"
             type="tel"
             autocomplete="tel"
+            placeholder="Your phone number"
             required
           >
         </div>
 
       </div>
 
-      <div class="field">
 
-        <label for="email">Email</label>
+      <div class="grid">
 
-        <input
-          id="email"
-          name="email"
-          type="email"
-          autocomplete="email"
-          required
-        >
+        <div class="field">
+          <label class="field-label" for="email">
+            Email
+          </label>
+
+          <input
+            id="email"
+            name="email"
+            type="email"
+            autocomplete="email"
+            placeholder="Your email"
+            required
+          >
+        </div>
+
+
+        <div class="field">
+          <label class="field-label" for="city">
+            City
+          </label>
+
+          <input
+            id="city"
+            name="city"
+            type="text"
+            autocomplete="address-level2"
+            placeholder="Your city"
+            required
+          >
+        </div>
 
       </div>
 
+
       <div class="field">
 
-        <label for="notes">
+        <label class="field-label" for="notes">
           Appointment Notes
           <span style="font-weight:400;color:#998f87">
             (optional)
@@ -513,6 +533,7 @@
 
       </div>
 
+
       <label class="check">
 
         <input
@@ -523,8 +544,8 @@
 
         <span>
           I confirm that the information I provided is accurate
-          and I agree to follow the spa's appointment and
-          cancellation policies.
+          and I agree to the spa's appointment and cancellation
+          policies.
         </span>
 
       </label>
@@ -532,7 +553,7 @@
     </section>
 
 
-    <!-- STEP 4 -->
+    <!-- 4. PAYMENT -->
     <section class="card">
 
       <h2 class="section-title">
@@ -552,7 +573,7 @@
           >
 
           <strong>50% Deposit</strong>
-          <small>Pay half now</small>
+          <small>Pay half</small>
 
         </label>
 
@@ -566,7 +587,7 @@
           >
 
           <strong>Full Payment</strong>
-          <small>Pay the full amount now</small>
+          <small>Pay full amount</small>
 
         </label>
 
@@ -577,22 +598,15 @@
 
         <span>Amount due now</span>
 
-        <span id="amount">
-          $0.00
-        </span>
+        <span id="amount">$0.00</span>
 
       </div>
 
 
       <div class="notice">
-
-        <strong>Important</strong><br>
-
-        This booking form records your appointment request.
-        Payment is not automatically charged or verified by
-        this form. The spa will contact you with payment
-        instructions and final confirmation.
-
+        Payment is not automatically charged by this form.
+        Your request will be saved and the spa will contact
+        you with payment instructions and confirmation.
       </div>
 
 
@@ -621,20 +635,18 @@
 
 
   <footer>
-    © Massage Spa • Please contact the spa directly with any questions.
+    <strong>Olive Massage & Spa</strong><br>
+    Relax • Refresh • Reconnect<br><br>
+    © 2026 Olive Massage & Spa
   </footer>
 
 </div>
 
 
-<!-- Supabase -->
+<!-- SUPABASE -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
-
-  /* ==============================
-     SUPABASE CONNECTION
-     ============================== */
 
   const SUPABASE_URL =
     "https://ffgbdjhvxfdrowxfrued.supabase.co";
@@ -649,21 +661,11 @@
     );
 
 
-  /* ==============================
-     PAGE ELEMENTS
-     ============================== */
-
-  const services =
-    document.querySelectorAll(".service");
-
-  const pays =
-    document.querySelectorAll(".pay");
+  const form =
+    document.getElementById("bookingForm");
 
   const amount =
     document.getElementById("amount");
-
-  const form =
-    document.getElementById("bookingForm");
 
   const confirmation =
     document.getElementById("confirmation");
@@ -674,27 +676,31 @@
   const submitButton =
     document.getElementById("submitButton");
 
+  const services =
+    document.querySelectorAll(".service");
+
+  const pays =
+    document.querySelectorAll(".pay");
+
   const date =
     document.getElementById("date");
 
 
-  /* ==============================
-     PREVENT PAST DATES
-     ============================== */
+  /* Prevent selecting a past date */
 
-  date.min =
+  const today =
     new Date().toISOString().split("T")[0];
 
+  date.min = today;
 
-  /* ==============================
-     UPDATE AMOUNT
-     ============================== */
 
-  function update() {
+  /* Calculate price */
+
+  function updateAmount(){
 
     const selected =
       document.querySelector(
-        '.service input[name="massage"]:checked'
+        'input[name="massage"]:checked'
       );
 
     const price =
@@ -718,12 +724,11 @@
 
     amount.textContent =
       "$" + due.toFixed(2);
+
   }
 
 
-  /* ==============================
-     SERVICE SELECTION
-     ============================== */
+  /* Massage selection */
 
   services.forEach(service => {
 
@@ -735,16 +740,14 @@
 
       service.classList.add("selected");
 
-      update();
+      updateAmount();
 
     });
 
   });
 
 
-  /* ==============================
-     PAYMENT SELECTION
-     ============================== */
+  /* Payment selection */
 
   pays.forEach(pay => {
 
@@ -756,245 +759,224 @@
 
       pay.classList.add("selected");
 
-      update();
+      updateAmount();
 
     });
 
   });
 
 
-  /* ==============================
-     SUBMIT BOOKING
-     ============================== */
+  /* Submit booking */
 
-  form.addEventListener("submit", async event => {
+  form.addEventListener(
+    "submit",
+    async function(event){
 
-    event.preventDefault();
+      event.preventDefault();
 
-
-    if (!form.checkValidity()) {
-
-      form.reportValidity();
-
-      return;
-
-    }
-
-
-    const selected =
-      document.querySelector(
-        '.service input[name="massage"]:checked'
-      );
-
-    const payment =
-      document.querySelector(
-        'input[name="payment"]:checked'
-      ).value;
-
-
-    const price =
-      Number(
-        selected
-          .closest(".service")
-          .dataset.price
-      );
-
-
-    const due =
-      payment === "full"
-        ? price
-        : price * 0.5;
-
-
-    const name =
-      document
-        .getElementById("name")
-        .value
-        .trim();
-
-
-    const phone =
-      document
-        .getElementById("phone")
-        .value
-        .trim();
-
-
-    const email =
-      document
-        .getElementById("email")
-        .value
-        .trim();
-
-
-    const preferredDate =
-      document
-        .getElementById("date")
-        .value;
-
-
-    const preferredTime =
-      document
-        .getElementById("time")
-        .value;
-
-
-    const notes =
-      document
-        .getElementById("notes")
-        .value
-        .trim();
-
-
-    /* Hide old messages */
-
-    confirmation.style.display = "none";
-    errorMessage.style.display = "none";
-
-
-    /* Disable button while saving */
-
-    submitButton.disabled = true;
-
-    submitButton.textContent =
-      "Submitting Appointment...";
-
-
-    try {
-
-      /* Send booking to Supabase */
-
-      const { data, error } =
-        await supabaseClient
-          .from("bookings")
-          .insert([
-            {
-              massage: selected.value,
-              price: price,
-              payment_option: payment,
-              amount_due: due,
-              preferred_date: preferredDate,
-              preferred_time: preferredTime,
-              full_name: name,
-              phone: phone,
-              email: email,
-              notes: notes,
-              status: "New",
-            }
-          ]);
-          
-
-
-      if (error) {
-        throw error;
+      if(!form.checkValidity()){
+        form.reportValidity();
+        return;
       }
 
 
-      /* Successful booking */
+      const selected =
+        document.querySelector(
+          'input[name="massage"]:checked'
+        );
 
-      confirmation.innerHTML = `
-        <strong>
-          Booking request received, ${name}.
-        </strong>
-        <br><br>
-
-        Your <strong>${selected.value}</strong>
-        appointment request has been submitted.
-        <br>
-
-        Preferred date:
-        <strong>${preferredDate}</strong>
-        <br>
-
-        Preferred time:
-        <strong>${preferredTime}</strong>
-        <br>
-
-        Amount due now:
-        <strong>$${due.toFixed(2)}</strong>
-        <br><br>
-
-        The spa will contact you to confirm
-        availability and provide payment instructions.
-      `;
+      const payment =
+        document.querySelector(
+          'input[name="payment"]:checked'
+        ).value;
 
 
-      confirmation.style.display =
-        "block";
+      const price =
+        Number(
+          selected
+            .closest(".service")
+            .dataset.price
+        );
 
 
-      confirmation.scrollIntoView({
-        behavior:"smooth",
-        block:"center"
-      });
+      const amountDue =
+        payment === "full"
+          ? price
+          : price * 0.5;
 
 
-      /* Reset form */
+      const booking = {
 
-      form.reset();
+        massage: selected.value,
 
+        price: price,
 
-      services.forEach(item => {
-        item.classList.remove("selected");
-      });
+        payment_option: payment,
 
+        amount_due: amountDue,
 
-      pays.forEach(item => {
-        item.classList.remove("selected");
-      });
+        preferred_date:
+          document.getElementById("date").value,
 
+        preferred_time:
+          document.getElementById("time").value,
 
-      pays[0].classList.add("selected");
+        full_name:
+          document.getElementById("name").value.trim(),
 
+        phone:
+          document.getElementById("phone").value.trim(),
 
-      update();
+        email:
+          document.getElementById("email").value.trim(),
 
+        city:
+          document.getElementById("city").value.trim(),
 
-    } catch (error) {
+        notes:
+          document.getElementById("notes").value.trim(),
 
-      console.error(
-        "Booking error:",
-        error
-      );
+        status: "New"
 
-
-      errorMessage.innerHTML = `
-        <strong>
-          We couldn't submit your booking.
-        </strong>
-        <br><br>
-
-        Please check your internet connection
-        and try again. If the problem continues,
-        please contact the spa directly.
-      `;
+      };
 
 
-      errorMessage.style.display =
-        "block";
+      confirmation.style.display = "none";
+      errorMessage.style.display = "none";
 
-
-      errorMessage.scrollIntoView({
-        behavior:"smooth",
-        block:"center"
-      });
-
-
-    } finally {
-
-      submitButton.disabled = false;
-
+      submitButton.disabled = true;
       submitButton.textContent =
-        "Request Appointment";
+        "Submitting Appointment...";
+
+
+      try{
+
+        const { error } =
+          await supabaseClient
+            .from("bookings")
+            .insert([booking]);
+
+
+        if(error){
+          throw error;
+        }
+
+
+        confirmation.innerHTML = `
+          <strong>
+            Booking request received!
+          </strong>
+
+          <br><br>
+
+          Thank you, ${booking.full_name}.
+
+          <br><br>
+
+          <strong>
+            ${booking.massage}
+          </strong>
+
+          <br>
+
+          Date:
+          <strong>${booking.preferred_date}</strong>
+
+          <br>
+
+          Time:
+          <strong>${booking.preferred_time}</strong>
+
+          <br>
+
+          City:
+          <strong>${booking.city}</strong>
+
+          <br>
+
+          Amount due:
+          <strong>
+            $${amountDue.toFixed(2)}
+          </strong>
+
+          <br><br>
+
+          Olive Massage & Spa will contact you
+          to confirm availability and provide
+          payment instructions.
+        `;
+
+
+        confirmation.style.display = "block";
+
+
+        confirmation.scrollIntoView({
+          behavior:"smooth",
+          block:"center"
+        });
+
+
+        form.reset();
+
+
+        services.forEach(item => {
+          item.classList.remove("selected");
+        });
+
+
+        pays.forEach(item => {
+          item.classList.remove("selected");
+        });
+
+
+        pays[0].classList.add("selected");
+
+
+        updateAmount();
+
+
+      }catch(error){
+
+        console.error(
+          "Booking error:",
+          error
+        );
+
+
+        errorMessage.innerHTML = `
+          <strong>
+            We couldn't submit your appointment.
+          </strong>
+
+          <br><br>
+
+          Please check your internet connection
+          and try again.
+        `;
+
+
+        errorMessage.style.display = "block";
+
+
+        errorMessage.scrollIntoView({
+          behavior:"smooth",
+          block:"center"
+        });
+
+      }finally{
+
+        submitButton.disabled = false;
+
+        submitButton.textContent =
+          "Request Appointment";
+
+      }
 
     }
+  );
 
-  });
 
-
-  /* Initial amount */
-
-  update();
+  updateAmount();
 
 </script>
 
