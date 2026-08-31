@@ -414,158 +414,84 @@ cancellation policies.
 
 <!-- STEP 4 -->
 <section class="card">
-
-<h2 class="section-title">
-  <span class="num">4</span>
-  Choose Payment
-</h2>
-
-
-<div class="payment-methods">
-
+  <h2 class="section-title">
+    <span class="num">4</span>
+    Choose Payment
+  </h2>
+  <h3>Payment Amount</h3>
+  <div class="payment-methods">
 <label class="pay selected">
-
-<input
-type="radio"
-name="payment"
-value="Venmo"
-required>
-
-<strong>Venmo</strong>
-<small>Details provided after request.</small>
-
+  <input type="radio" name="payment_option" value="deposit" required>
+  <strong>50% Deposit</strong>
+  <small>Pay half now</small>
 </label>
-
-
 <label class="pay">
-
-<input
-type="radio"
-name="payment"
-value="Zelle">
-
-<strong>Zelle</strong>
-<small>Details provided after request.</small>
-
+  <input type="radio" name="payment_option" value="full">
+  <strong>Full Payment</strong>
+  <small>Pay the full amount now</small>
 </label>
-
-
+  </div>
+  <div class="total">
+    <span>Amount due now</span>
+    <span id="amount">$0.00</span>
+  </div>
+  <h3>Preferred Payment Method</h3>
+  <div class="payment-methods">
+<label class="pay selected">
+  <input type="radio" name="payment_method" value="Venmo" required>
+  <strong>Venmo</strong>
+  <small>Details provided after request.</small>
+</label>
 <label class="pay">
-
-<input
-type="radio"
-name="payment"
-value="Chime">
-
-<strong>Chime</strong>
-<small>Details provided after request.</small>
-
+  <input type="radio" name="payment_method" value="Zelle">
+  <strong>Zelle</strong>
+  <small>Details provided after request.</small>
 </label>
-
-
 <label class="pay">
-
-<input
-type="radio"
-name="payment"
-value="Cash App — Bitcoin">
-
-<strong>Cash App — Bitcoin</strong>
-<small>Details provided after request.</small>
-
+  <input type="radio" name="payment_method" value="Chime">
+  <strong>Chime</strong>
+  <small>Details provided after request.</small>
 </label>
-
-
 <label class="pay">
-
-<input
-type="radio"
-name="payment"
-value="PayPal">
-
-<strong>PayPal</strong>
-<small>Details provided after request.</small>
-
+  <input type="radio" name="payment_method" value="Cash App — Bitcoin">
+  <strong>Cash App — Bitcoin</strong>
+  <small>Details provided after request.</small>
 </label>
-
-
 <label class="pay">
-
-<input
-type="radio"
-name="payment"
-value="Gift Card">
-
-<strong>Gift Card</strong>
-<small>Instructions provided after request.</small>
-
+  <input type="radio" name="payment_method" value="PayPal">
+  <strong>PayPal</strong>
+  <small>Details provided after request.</small>
 </label>
-
-</div>
-
-
-<div class="total">
-
-<span>Amount due now</span>
-
-<span id="amount">$0.00</span>
-
-</div>
-
-
-<div class="notice">
-
-<strong>Payment Instructions</strong>
-
-<br>
-
-Please select your preferred payment method.
-The spa will provide the appropriate payment
-details and instructions after your appointment
-request is received.
-
-</div>
-
-
-<div class="notice refund">
-
-<strong>Refund Policy</strong>
-
-<br>
-
-Please note that your payment is
-<strong>100% refundable if your appointment is cancelled.</strong>
-Any applicable refund will be processed according
-to the spa's cancellation policy.
-
-</div>
-
-
-<div class="notice">
-
-<strong>Important</strong>
-
-<br>
-
-This booking form records your appointment request.
-Payment is not automatically charged or verified
-by this form. The spa will contact you with payment
-instructions and final confirmation.
-
-</div>
-
-
-<button id="submitButton" type="submit">
-Request Appointment
-</button>
-
-
-<div id="confirmation" class="confirmation"></div>
-
-<div id="errorMessage" class="error"></div>
-
+<label class="pay">
+  <input type="radio" name="payment_method" value="Gift Card">
+  <strong>Gift Card</strong>
+  <small>Instructions provided after request.</small>
+</label>
+  </div>
+  <div class="notice">
+    <strong>Payment Instructions</strong><br>
+    Please select your preferred payment method.
+    The spa will provide the appropriate payment details
+    and instructions after your appointment request is received.
+  </div>
+  <div class="notice refund">
+    <strong>Refund Policy</strong><br>
+    Please note that your payment is
+    <strong>100% refundable if your appointment is cancelled.</strong>
+    Any applicable refund will be processed according to the spa's cancellation policy.
+  </div>
+  <div class="notice">
+    <strong>Important</strong><br>
+    This booking form records your appointment request.
+    Payment is not automatically charged or verified by this form.
+    The spa will contact you with payment instructions and final confirmation.
+  </div>
+  <button id="submitButton" type="submit">
+    Request Appointment
+  </button>
+  <div id="confirmation" class="confirmation"></div>
+  <div id="errorMessage" class="error"></div>
 </section>
-
 </form>
 
 
